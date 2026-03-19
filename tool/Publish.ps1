@@ -15,9 +15,7 @@ git push origin "v$version"
 
 $output = "var/NuGet"
 dotnet pack --output $output
-Get-Item "$output/*.nupkg" | ForEach-Object {
-	dotnet nuget push $_ --api-key $Env:NUGET_API_KEY --source https://api.nuget.org/v3/index.json
-}
+Get-Item "$output/*.nupkg" | ForEach-Object { dotnet nuget push $_ --api-key $Env:NUGET_API_KEY --source NuGet }
 
 $output = "var/PSModule"
 New-Item $output/bin -ItemType Directory | Out-Null
