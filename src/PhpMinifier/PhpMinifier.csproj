@@ -24,7 +24,7 @@
 		<Nullable>enable</Nullable>
 		<OutDir>../../bin</OutDir>
 		<RootNamespace>Belin.PhpMinifier</RootNamespace>
-		<TargetFramework>net9.0</TargetFramework>
+		<TargetFramework>net10.0</TargetFramework>
 	</PropertyGroup>
 
 	<ItemGroup>

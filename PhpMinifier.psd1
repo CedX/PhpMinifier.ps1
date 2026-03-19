@@ -1,7 +1,7 @@
 @{
 	DefaultCommandPrefix = "Php"
 	ModuleVersion = "2.0.0"
-	PowerShellVersion = "7.5"
+	PowerShellVersion = "7.6"
 	RootModule = "bin/Belin.PhpMinifier.Cmdlets.dll"
 
 	Author = "Cédric Belin <cedx@outlook.com>"
