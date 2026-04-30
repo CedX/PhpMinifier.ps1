@@ -1,7 +1,5 @@
+using module ./Cmdlets.psm1
+
 "Running the test suite..."
-dotnet test --settings .runsettings
-pwsh -Command {
-	Import-Module Pester
-	Invoke-Pester test
-	exit $LASTEXITCODE
-}
+Invoke-DotNetTest -Settings "$PSScriptRoot/../.runsettings"
+pwsh -Command { Import-Module Pester; Invoke-Pester test; exit $LASTEXITCODE }

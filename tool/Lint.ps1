@@ -1,5 +1,5 @@
-Import-Module PSScriptAnalyzer
+using module PSScriptAnalyzer
 
 "Performing the static analysis of source code..."
-$PSScriptRoot, "test" | Invoke-ScriptAnalyzer -Recurse
+Invoke-ScriptAnalyzer $PSScriptRoot, "test" -Recurse
 Test-ModuleManifest PhpMinifier.psd1 | Out-Null
