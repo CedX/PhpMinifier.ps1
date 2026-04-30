@@ -1,7 +1,4 @@
 /**/*.user
 /.idea/
 /.vs/
-/bin/
-/src/*/obj/
-/test/obj/
 /var/
