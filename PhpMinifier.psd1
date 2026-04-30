@@ -19,15 +19,11 @@
 		"New-Transformer"
 	)
 
-	RequiredAssemblies = @(
-		"bin/Belin.PhpMinifier.dll"
-	)
-
 	PrivateData = @{
 		PSData = @{
-			LicenseUri = "https://github.com/cedx/php-minifier.net/blob/main/License.md"
-			ProjectUri = "https://github.com/cedx/php-minifier.net"
-			ReleaseNotes = "https://github.com/cedx/php-minifier.net/releases"
+			LicenseUri = "https://github.com/cedx/php-minifier.ps1/blob/main/License.md"
+			ProjectUri = "https://github.com/cedx/php-minifier.ps1"
+			ReleaseNotes = "https://github.com/cedx/php-minifier.ps1/releases"
 			Tags = "ci", "compress", "minify", "php"
 		}
 	}
