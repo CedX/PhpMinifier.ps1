@@ -21,9 +21,9 @@
 
 	PrivateData = @{
 		PSData = @{
-			LicenseUri = "https://github.com/cedx/php-minifier.ps1/blob/main/License.md"
-			ProjectUri = "https://github.com/cedx/php-minifier.ps1"
-			ReleaseNotes = "https://github.com/cedx/php-minifier.ps1/releases"
+			LicenseUri = "https://github.com/CedX/PhpMinifier.ps1/blob/main/License.md"
+			ProjectUri = "https://github.com/CedX/PhpMinifier.ps1"
+			ReleaseNotes = "https://github.com/CedX/PhpMinifier.ps1/releases"
 			Tags = "ci", "compress", "minify", "php"
 		}
 	}
