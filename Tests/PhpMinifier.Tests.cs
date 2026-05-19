@@ -19,8 +19,8 @@ public sealed class PhpMinifierTests(TestContext testContext) {
 
 	[TestMethod]
 	public async Task CompressAsync() {
-		var inputDirectory = Path.Join(AppContext.BaseDirectory, "../res");
-		var outputDirectory = Path.Join(AppContext.BaseDirectory, "../var");
+		var inputDirectory = Path.Join(AppContext.BaseDirectory, "../Resources");
+		var outputDirectory = Path.Join(AppContext.BaseDirectory, "../Temp");
 		var outputFile = Path.Join(outputDirectory, "Sample.php");
 
 		using (var fastMinifier = new PhpMinifier(TransformMode.Fast)) {
