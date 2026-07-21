@@ -17,7 +17,7 @@ public class CompressScriptCommand: PSCmdlet {
 	/// <summary>
 	/// The path to the output directory.
 	/// </summary>
-	[Parameter(Position = 1)]
+	[Parameter(Position = 2)]
 	public required string DestinationPath { get; set; }
 
 	/// <summary>
@@ -41,7 +41,7 @@ public class CompressScriptCommand: PSCmdlet {
 	/// <summary>
 	/// The path to the PHP script to compress.
 	/// </summary>
-	[Parameter(Mandatory = true, ParameterSetName = nameof(Path), Position = 0, ValueFromPipeline = true), SupportsWildcards]
+	[Parameter(Mandatory = true, ParameterSetName = nameof(Path), Position = 1, ValueFromPipeline = true), SupportsWildcards]
 	public required string[] Path { get; set; }
 
 	/// <summary>

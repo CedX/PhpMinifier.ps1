@@ -15,7 +15,7 @@ public class NewTransformerCommand: Cmdlet {
 	/// <summary>
 	/// The operation mode of the minifier.
 	/// </summary>
-	[Parameter(Position = 0)]
+	[Parameter(Position = 1)]
 	public TransformMode Type { get; set; } = TransformMode.Safe;
 
 	/// <summary>
