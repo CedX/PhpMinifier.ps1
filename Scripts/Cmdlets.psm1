@@ -56,19 +56,24 @@ function New-GitTag {
 
 <#
 .SYNOPSIS
-	Publishes the project package to the NuGet registry.
+	Publishes the project package to the PowerShell Gallery registry.
 #>
-function Publish-NuGetPackage {
-	param (
-		# Value indicating whether to not build the solution before compression.
-		[switch] $NoBuild
-	)
+function Publish-PSGalleryModule {
+	$root = Join-Path $PSScriptRoot .. -Resolve
+	$module = Import-PowerShellDataFile $root/PhpMinifier.psd1
 
-	$output = "$PSScriptRoot/../Temp/NuGet"
-	$argumentList = "--output", $output
-	if ($NoBuild) { $argumentList += "--no-build" }
-	dotnet pack @argumentList
-	foreach ($package in Get-Item $output/*.nupkg) { dotnet nuget push $package --api-key $Env:NUGET_API_KEY --source NuGet }
+	$output = "$root/Temp/PSModule"
+	New-Item $output/Binaries -ItemType Directory | Out-Null
+	Copy-Item $root/PhpMinifier.psd1 $output/Belin.PhpMinifier.psd1
+	Copy-Item $root/*.md $output
+	Copy-Item $root/Sources $output -Recurse
+	Remove-Item $output/Sources/*.cs*, $output/Sources/obj -Recurse
+	$module.RequiredAssemblies | ForEach-Object { "$root/$_" } | Copy-Item -Destination $output/Binaries
+
+	$output = "$root/Temp/PSGallery"
+	New-Item $output -ItemType Directory | Out-Null
+	Compress-PSResource $root/Temp/PSModule $output
+	Get-Item $output/*.nupkg | ForEach-Object { Publish-PSResource -ApiKey $Env:PSGALLERY_API_KEY -NupkgPath $_ -Repository PSGallery }
 }
 
 <#
