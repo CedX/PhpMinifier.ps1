@@ -1,6 +1,7 @@
 {
 	"recommendations": [
 		"bmewburn.vscode-intelephense-client",
+		"ionide.ionide-fsharp",
 		"ms-vscode.powershell"
 	]
 }
