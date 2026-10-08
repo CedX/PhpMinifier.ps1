@@ -21,6 +21,6 @@ public class NewTransformerCommand: Cmdlet {
 	/// <summary>
 	/// Performs execution of this command.
 	/// </summary>
-	protected override void ProcessRecord() =>
+	protected override void ProcessRecord () =>
 		WriteObject(Type == TransformMode.Fast ? new FastTransformer(Executable) : new SafeTransformer(Executable));
 }

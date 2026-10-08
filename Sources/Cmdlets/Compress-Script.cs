@@ -65,18 +65,18 @@ public class CompressScriptCommand: PSCmdlet {
 	/// Performs initialization of command execution.
 	/// </summary>
 	[MemberNotNull(nameof(transformer))]
-	protected override void BeginProcessing() =>
+	protected override void BeginProcessing () =>
 		transformer = Mode == TransformMode.Fast ? new FastTransformer(Command) : new SafeTransformer(Command);
 
 	/// <summary>
 	/// Performs clean-up after the command execution.
 	/// </summary>
-	protected override void EndProcessing() => transformer?.Dispose();
+	protected override void EndProcessing () => transformer?.Dispose();
 
 	/// <summary>
 	/// Performs execution of this command.
 	/// </summary>
-	protected override void ProcessRecord() {
+	protected override void ProcessRecord () {
 		using var script = PowerShell.Create(RunspaceMode.CurrentRunspace).AddCommand("Get-ChildItem");
 		if (ParameterSetName == nameof(LiteralPath)) script.AddParameter(nameof(LiteralPath), LiteralPath);
 		else script.AddParameter(nameof(Path), Path);
