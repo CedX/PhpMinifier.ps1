@@ -5,7 +5,7 @@ namespace Belin.PhpMinifier;
 /// </summary>
 /// <param name="testContext">The test context.</param>
 [TestClass]
-public sealed class PhpMinifierTests(TestContext testContext) {
+public class PhpMinifierTests(TestContext testContext) {
 
 	/// <summary>
 	/// The patterns tested to determine if minification is OK.

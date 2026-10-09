@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 /// </summary>
 /// <param name="testContext">The test context.</param>
 [TestClass]
-public sealed class FastTransformerTests(TestContext testContext) {
+public class FastTransformerTests(TestContext testContext) {
 
 	/// <summary>
 	/// The patterns tested to determine if minification is OK.

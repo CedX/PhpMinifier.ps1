@@ -9,7 +9,7 @@ using System.Net.Sockets;
 /// Removes comments and whitespace from a PHP script, by calling a Web service.
 /// </summary>
 /// <param name="executable">The path to the PHP executable.</param>
-public sealed class FastTransformer(string executable = "php"): ITransformer {
+public class FastTransformer(string executable = "php"): ITransformer {
 
 	/// <summary>
 	/// The HTTP client used to query the PHP process.
@@ -31,7 +31,7 @@ public sealed class FastTransformer(string executable = "php"): ITransformer {
 		process?.Dispose();
 		process = null;
 	}
-	
+
 	/// <summary>
 	/// Processes a PHP script.
 	/// </summary>

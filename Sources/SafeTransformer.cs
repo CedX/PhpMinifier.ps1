@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 /// Removes comments and whitespace from a PHP script, by calling a PHP process.
 /// </summary>
 /// <param name="executable">The path to the PHP executable.</param>
-public sealed class SafeTransformer(string executable = "php"): ITransformer {
+public class SafeTransformer(string executable = "php"): ITransformer {
 
 	/// <summary>
 	/// Releases any resources associated with this object.
 	/// </summary>
 	public void Dispose() {}
-	
+
 	/// <summary>
 	/// Processes a PHP script.
 	/// </summary>
