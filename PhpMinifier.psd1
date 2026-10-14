@@ -20,7 +20,7 @@
 	)
 
 	RequiredModules = @(
-		@{ ModuleName = "Belin.FSharp"; ModuleVersion = "10.1.401" }
+		@{ ModuleName = "Belin.FSharp"; ModuleVersion = "10.1.402" }
 	)
 
 	PrivateData = @{
