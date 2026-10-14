@@ -1,6 +1,6 @@
 @{
 	DefaultCommandPrefix = "Php"
-	ModuleVersion = "2.0.0"
+	ModuleVersion = "2026.10.0"
 	PowerShellVersion = "7.6"
 	RootModule = "Sources/Main.psm1"
 
