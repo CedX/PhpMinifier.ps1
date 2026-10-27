@@ -1,49 +1,68 @@
-using namespace System.Diagnostics.CodeAnalysis
+<#
+.SYNOPSIS
+	The cached contents of the module manifest.
+#>
+[hashtable] $Script:Manifest = $null
 
 <#
 .SYNOPSIS
-	Builds the .NET solution and all of its dependencies.
+	Gets the path, or the contents, of the module manifest.
+.OUTPUTS
+	[string] The path to the module manifest.
+.OUTPUTS
+	[hashtable] The contents of the module manifest.
 #>
-function Build-DotNetSolution {
+function Get-Manifest {
+	[CmdletBinding(DefaultParameterSetName = "Default")]
+	[OutputType([hashtable], [string])]
 	param (
-		# The configuration to use for generating the project.
-		[Parameter(Position = 1)]
-		[string] $Configuration
+		# Value indicating whether to return the module data instead of its path.
+		[Parameter(ParameterSetName = "AsHashtable")]
+		[switch] $AsHashtable
 	)
 
-	$argumentList = $Configuration ? "--configuration", $Configuration : @()
-	dotnet build @argumentList
+	if ($null -eq $Script:Manifest) {
+		$path =
+			Get-ChildItem (Join-Path $PSScriptRoot ..) -File -Filter *.psd1
+			| Where-Object BaseName -NotIn "PSModules", "PSScriptAnalyzerSettings"
+			| Select-Object -ExpandProperty FullName -First 1
+
+		$Script:Manifest = @{
+			Data = Import-PowerShellDataFile $path
+			Path = $path
+		}
+	}
+
+	$AsHashtable ? $Script:Manifest.Data : $Script:Manifest.Path
 }
 
 <#
 .SYNOPSIS
-	Invokes the .NET test runner.
+	Gets the path to the solution file.
+.OUTPUTS
+	The path to the solution file.
 #>
-function Invoke-DotNetTest {
-	param (
-		# The path to the settings file to use for running the tests.
-		[ValidateScript({ Test-Path $_ -PathType Leaf }, ErrorMessage = "The specified settings file does not exist.")]
-		[string] $Settings
-	)
+function Get-Solution {
+	[CmdletBinding()]
+	[OutputType([string])]
+	param ()
 
-	$argumentList = $Settings ? "--settings", $Settings : @()
-	dotnet test @argumentList
+	Get-ChildItem (Join-Path $PSScriptRoot ..) -File -Filter *.slnx
+	| Select-Object -ExpandProperty FullName -First 1
 }
 
 <#
 .SYNOPSIS
-	Creates a new Git tag.
+	Gets the project version number.
+.OUTPUTS
+	The project version number.
 #>
-function New-GitTag {
-	[SuppressMessage("PSUseShouldProcessForStateChangingFunctions", "")]
-	param (
-		# The tag name.
-		[Parameter(Mandatory, Position = 1)]
-		[string] $Name
-	)
+function Get-Version {
+	[CmdletBinding()]
+	[OutputType([version])]
+	param ()
 
-	git tag $Name
-	git push origin $Name
+	[version]::Parse((Get-Manifest -AsHashtable).ModuleVersion)
 }
 
 <#
@@ -66,14 +85,6 @@ function Publish-PSGalleryModule {
 	New-Item $output -ItemType Directory | Out-Null
 	Compress-PSResource $root/Temp/PSModule $output
 	Get-Item $output/*.nupkg | ForEach-Object { Publish-PSResource -ApiKey $Env:PSGALLERY_API_KEY -NupkgPath $_ -Repository PSGallery }
-}
-
-<#
-.SYNOPSIS
-	Checks whether an update is available for the NuGet packages.
-#>
-function Test-NuGetPackageUpdate {
-	dotnet package list --outdated
 }
 
 <#
