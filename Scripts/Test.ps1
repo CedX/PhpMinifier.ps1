@@ -1,4 +1,4 @@
-"Running the test suite..."
+Write-Information "Running the test suite..."
 pwsh -Command {
 	Import-Module Pester
 	Invoke-Pester Tests
