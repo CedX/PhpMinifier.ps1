@@ -2,13 +2,13 @@
 	DefaultCommandPrefix = "Php"
 	ModuleVersion = "2026.10.0"
 	PowerShellVersion = "7.6"
-	RootModule = "Sources/Main.psm1"
+	RootModule = "Binaries/Belin.PhpMinifier.dll"
 
 	Author = "Cédric Belin <cedx@outlook.com>"
 	CompanyName = "Cedric-Belin.fr"
 	Copyright = "© Cédric Belin"
 	Description = "Minify PHP source code by removing comments and whitespace."
-	GUID = "bcbf1848-7f0f-4eac-83c7-c83390f4265c"
+	GUID = "80e95460-facb-4517-87b0-6406f72e030d"
 
 	AliasesToExport = @()
 	FunctionsToExport = @()
